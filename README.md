@@ -2,19 +2,19 @@
 
 This project is a simple AI-powered travel recommendation system built with FastAPI (Python) and a minimal HTML frontend.
 
-## 🔍 Features
+##  Features
 
-- 🌍 Suggests 3–5 travel destinations based on:
+-  Suggests 3–5 travel destinations based on:
   - Preferred climate
   - Travel duration
   - Budget
   - Interests (adventure, culture, food, relaxation)
-- 🤖 Uses OpenAI GPT (gpt-3.5-turbo) for destination recommendation generation
-- 📈 Predicts user satisfaction score (0–100) using a simple RandomForestRegressor model
-- 🧠 Has fallback logic in case of LLM failure
-- 🎯 Clean UI with basic CSS
+-  Uses OpenAI GPT (gpt-3.5-turbo) for destination recommendation generation
+-  Predicts user satisfaction score (0–100) using a simple RandomForestRegressor model
+-  Has fallback logic in case of LLM failure
+-  Clean UI with basic CSS
 
-## 📂 Project Structure
+##  Project Structure
 
 ```
 travel-recommender/
@@ -27,7 +27,6 @@ travel-recommender/
 └── sample_output.json
 ```
 
-## 🚀 Getting Started
 
 ### Backend Setup
 
@@ -61,7 +60,7 @@ Open the `frontend/index.html` in your browser.
 
 > Make sure the backend is running at http://localhost:3001
 
-## 📊 Satisfaction Prediction
+##  Satisfaction Prediction
 
 The satisfaction score is generated based on features like:
 - Budget vs destination cost
@@ -71,7 +70,7 @@ The satisfaction score is generated based on features like:
 
 It uses a `RandomForestRegressor` trained on synthetic data.
 
-## 📎 Sample API Request
+##  Sample API Request
 
 POST `/api/recommendations`
 
@@ -84,7 +83,7 @@ POST `/api/recommendations`
 }
 ```
 
-## 📎 Sample Output (stored in `sample_output.json`)
+##  Sample Output (stored in `sample_output.json`)
 
 ```json
 {
@@ -105,14 +104,14 @@ POST `/api/recommendations`
 }
 ```
 
-## ✅ Health Check
+##  Health Check
 
 Check server status at:
 ```
 GET /api/health
 ```
 
-## 📌 Assumptions
+##  Assumptions
 
 - GPT-3.5 is used (can be swapped with other OpenAI-compatible models)
 - Basic frontend; no login/authentication required
@@ -120,4 +119,4 @@ GET /api/health
 
 ---
 
-© 2025 DayTripto Ltd. All rights reserved.
+© 2025 Dhananjani Jayarukshi. All rights reserved.
