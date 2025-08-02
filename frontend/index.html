@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Recommendations</title>
+  <style>
+    :root {
+      --primary-color: #0077cc;
+      --error-color: #cc3300;
+      --background-color: #f9f9f9;
+      --border-color: #ddd;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--background-color);
+      max-width: 720px;
+      margin: 3rem auto;
+      padding: 1rem 2rem;
+      color: #222;
+      line-height: 1.5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 2.25rem;
+    }
+
+    form {
+      background: #fff;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem 2.5rem;
+      box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+    }
+
+    label {
+      display: block;
+      margin-top: 1.5rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    select,
+    input[type="number"] {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      margin-top: 0.5rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.25s ease;
+    }
+
+    select:focus,
+    input[type="number"]:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 4px var(--primary-color);
+    }
+
+    fieldset.interests {
+      margin-top: 2rem;
+      border: none;
+      padding: 0;
+    }
+
+    legend {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .interests label {
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .interests input[type="checkbox"] {
+      margin-right: 0.75rem;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+      accent-color: var(--primary-color);
+    }
+
+    button {
+      margin-top: 2.5rem;
+      width: 100%;
+      padding: 0.85rem;
+      font-size: 1.15rem;
+      font-weight: 700;
+      background-color: var(--primary-color);
+      border: none;
+      border-radius: 6px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 2px 8px rgb(0 119 204 / 0.4);
+    }
+
+    button:hover,
+    button:focus {
+      background-color: #005fa3;
+      outline: none;
+      box-shadow: 0 4px 12px rgb(0 95 163 / 0.6);
+    }
+
+    .result {
+      margin-top: 3rem;
+    }
+
+    .destination {
+      background: white;
+      border: 1px solid var(--border-color);
+      padding: 1.5rem 1.75rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 8px rgb(0 0 0 / 0.05);
+    }
+
+    .destination h3 {
+      margin: 0 0 0.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .destination p {
+      margin: 0.25rem 0;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .loading {
+      font-style: italic;
+      color: #555;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .error {
+      color: var(--error-color);
+      font-weight: 600;
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1>Travel Recommendations</h1>
+    
+    <form id="prefForm" novalidate aria-describedby="formError" aria-live="polite">
+      <label for="climateSelect">
+        Climate:
+        <select id="climateSelect" name="climate" required aria-required="true" aria-invalid="false">
+          <option value="">Select climate</option>
+          <option value="tropical">Tropical</option>
+          <option value="moderate">Moderate</option>
+          <option value="cold">Cold</option>
+        </select>
+      </label>
+
+      <label for="durationInput">
+        Duration (days, 1-14):
+        <input
+          id="durationInput"
+          name="duration"
+          type="number"
+          min="1"
+          max="14"
+          required
+          aria-required="true"
+          aria-invalid="false"
+          placeholder="Enter number of days"
+        />
+      </label>
+
+      <label for="budgetInput">
+        Budget ($500 - $5000):
+        <input
+          id="budgetInput"
+          name="budget"
+          type="number"
+          min="500"
+          max="5000"
+          required
+          aria-required="true"
+          aria-invalid="false"
+          placeholder="Enter your budget"
+        />
+      </label>
+
+      <fieldset class="interests" aria-describedby="interestError" aria-required="true">
+        <legend>Interests (select at least one):</legend>
+        <label for="interestAdventure"><input type="checkbox" id="interestAdventure" name="interests" value="adventure" /> Adventure</label>
+        <label for="interestCulture"><input type="checkbox" id="interestCulture" name="interests" value="culture" /> Culture</label>
+        <label for="interestRelaxation"><input type="checkbox" id="interestRelaxation" name="interests" value="relaxation" /> Relaxation</label>
+        <label for="interestFood"><input type="checkbox" id="interestFood" name="interests" value="food" /> Food</label>
+      </fieldset>
+
+      <button type="submit" id="submitBtn">Get Recommendations</button>
+      <div id="formError" role="alert" class="error" aria-live="assertive" style="display:none;"></div>
+    </form>
+
+    <section id="result" class="result" aria-live="polite" aria-atomic="true"></section>
+  </main>
+
+  <script>
+    (() => {
+      const form = document.getElementById('prefForm');
+      const resultDiv = document.getElementById('result');
+      const formError = document.getElementById('formError');
+
+      const setError = (message) => {
+        formError.textContent = message;
+        formError.style.display = message ? 'block' : 'none';
+      };
+
+      const clearResult = () => {
+        resultDiv.innerHTML = '';
+      };
+
+      const renderDestinations = (destinations) => {
+        resultDiv.innerHTML = `
+          <h2>Recommended Destinations</h2>
+          ${destinations
+            .map(
+              ({ name, description, reasoning, satisfactionScore, estimatedCost, climate, bestDuration }) => `
+                <article class="destination" tabindex="0" aria-label="Destination: ${name}">
+                  <h3>${name}</h3>
+                  <p><strong>Description:</strong> ${description}</p>
+                  <p><strong>Reasoning:</strong> ${reasoning}</p>
+                  <p><strong>Satisfaction Score:</strong> ${satisfactionScore}</p>
+                  <p><strong>Estimated Cost:</strong> $${estimatedCost}</p>
+                  <p><strong>Climate:</strong> ${climate}</p>
+                  <p><strong>Best Duration:</strong> ${bestDuration}</p>
+                </article>
+              `
+            )
+            .join('')}
+        `;
+      };
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        setError('');
+        clearResult();
+
+        // Validate interests manually
+        const interests = Array.from(form.querySelectorAll('input[name="interests"]:checked')).map((el) => el.value);
+        if (interests.length === 0) {
+          setError('Please select at least one interest.');
+          return;
+        }
+
+        // Use Constraint Validation API to check other fields
+        if (!form.checkValidity()) {
+          setError('Please fill out all required fields correctly.');
+          return;
+        }
+
+        const climate = form.climate.value;
+        const duration = Number(form.duration.value);
+        const budget = Number(form.budget.value);
+
+        resultDiv.innerHTML = '<p class="loading">Loading recommendations...</p>';
+
+        const payload = { climate, duration, budget, interests };
+
+        try {
+          const response = await fetch('http://localhost:3001/api/recommendations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server error: ${response.statusText}`);
+          }
+
+          const data = await response.json();
+
+          if (!data.destinations || data.destinations.length === 0) {
+            resultDiv.innerHTML = '<p>No recommendations found for your preferences.</p>';
+            return;
+          }
+
+          renderDestinations(data.destinations);
+        } catch (error) {
+          resultDiv.innerHTML = `<p class="error">Failed to get recommendations: ${error.message}</p>`;
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>

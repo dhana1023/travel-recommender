@@ -1,0 +1,42 @@
+{
+    "destinations": [
+        {
+            "name": "Bali, Indonesia",
+            "description": "Bali offers a tropical climate, rich cultural experiences, and adventurous activities like surfing and jungle trekking.",
+            "reasoning": "Matches your preference for a tropical climate, culture, and adventure. Fits within your budget and duration.",
+            "satisfactionScore": 99,
+            "estimatedCost": 1200,
+            "climate": "tropical",
+            "bestDuration": "7-10 days"
+        },
+        {
+            "name": "Costa Rica",
+            "description": "Costa Rica boasts a tropical climate, diverse culture, and thrilling adventures such as zip-lining and wildlife spotting.",
+            "reasoning": "Aligns with your desire for a tropical destination with adventure and cultural experiences. Fits your budget and duration.",
+            "satisfactionScore": 99,
+            "estimatedCost": 1800,
+            "climate": "tropical",
+            "bestDuration": "9-12 days"
+        },
+        {
+            "name": "Thailand",
+            "description": "Thailand offers a tropical climate, vibrant culture, and a mix of adventure activities like diving, exploring temples, and trying local cuisine.",
+            "reasoning": "Meets your criteria for a tropical destination with cultural immersion and adventurous pursuits. Falls within your budget and duration.",
+            "satisfactionScore": 99,
+            "estimatedCost": 1000,
+            "climate": "tropical",
+            "bestDuration": "10-14 days"
+        }
+    ],
+    "message": "AI recommendations generated successfully",
+    "preferences": {
+        "climate": "tropical",
+        "duration": 12,
+        "budget": 1200,
+        "interests": [
+            "adventure",
+            "culture"
+        ]
+    },
+    "timestamp": "2025-08-03T00:54:51.745420"
+}
